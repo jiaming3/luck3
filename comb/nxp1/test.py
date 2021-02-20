@@ -177,10 +177,12 @@ if __name__ == "__main__":
                  counter = funcreturn(counter,move_time)
                  last_hour =current_hour
           else:
+               # across day
               hour_difference2 = current_hour+ 24 - last_hour
-              last_day =current_day
-              last_hour = current_hour
-
+              if hour_difference2 >= time_for_return:
+                counter = funcreturn(counter, move_time)
+                last_day =current_day
+                last_hour = current_hour
 
         except:
             pass
