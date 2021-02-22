@@ -6,6 +6,7 @@ import time
 from bmp280 import bmp280_readdata,bmp280_convert,bmp280_checktemp
 from si import hum,temp
 from control import func_sensor,func_return,right,addwater
+from motor import init
  
 """
 accel/mag - 0x1f
@@ -167,7 +168,21 @@ if __name__ == "__main__":
             
             print("manual message",manual_message)
             if manual_message == "manual_rotate":
-                right(rotate_time)
+                #######
+                init()
+                gpio.output(27, False)
+                gpio.output(22, True)
+                gpio.output(23, False)
+                gpio.output(24, True)
+                time.sleep(tf)
+
+                gpio.output(27, True)
+                gpio.output(22, False)
+                gpio.output(23, True)
+                gpio.output(24, False)
+                time.sleep(0.025)
+                gpio.cleanup()
+                ########
                 current_rotate_position = current_rotate_position + 1
                 manual_message = None
                 
