@@ -192,8 +192,10 @@ if __name__ == "__main__":
                 
 
             if manual_message=="manual_backward":
-                stabilizer, counter = func_sensor(100, 0, 0, counter, max_num, move_time, stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
-
+                
+                stabilizer, counter,current_rotate_position = func_sensor(100, 0, 0, counter, max_num, move_time, stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
+                current_rotate_position = current_rotate_position + 1
+                
             if manual_message=="manual_return":
                 counter = func_return(counter, move_time,current_rotate_position,rotate_time)
                 reset_time = time.localtime()
@@ -237,7 +239,7 @@ if __name__ == "__main__":
         try:
           #code for auto motor motion
           #muliti copy of time to avoid intercetion time error after changing parameter by phone
-          stabilizer, counter = func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
+          stabilizer, counter,current_rotate_position = func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
 
           current_time =time.localtime()
           current_min = current_time.tm_min
