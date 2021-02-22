@@ -8,6 +8,7 @@ def init():
     gpio.setup(22, gpio.OUT)
     gpio.setup(23, gpio.OUT)
     gpio.setup(24, gpio.OUT)
+    gpio.setup(17, gpio.OUT)
 
 
 def reverse(tf):
