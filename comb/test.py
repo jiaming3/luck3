@@ -235,7 +235,7 @@ if __name__ == "__main__":
           print("each_hr_for_water",each_hr_for_water,"each_hr_for_rotation",each_hr_for_rotation,"time_for_return",time_for_return)
         except:
             pass
-"""
+
         try:
           #code for auto motor motion
           #muliti copy of time to avoid intercetion time error after changing parameter by phone
@@ -316,7 +316,7 @@ if __name__ == "__main__":
 
         except:
             pass
- """
+
         last_water_hr = last_hour4
         last_rotate_hr = last_hour3
         publish_data(te, hu, p, flower,last_water_hr,last_rotate_hr)
