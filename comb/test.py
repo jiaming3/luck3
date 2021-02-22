@@ -5,7 +5,7 @@ from nxp_imu import IMU
 import time
 from bmp280 import bmp280_readdata,bmp280_convert,bmp280_checktemp
 from si import hum,temp
-from control import func_sensor,func_return,right,addwater
+from control import func_sensor,func_return,right,addwater,stop
  
 """
 accel/mag - 0x1f
