@@ -62,15 +62,15 @@ def water(tf):
     
 def motor_right(tf):
     init()
-    gpio.output(27, False)
-    gpio.output(22, True)
+    gpio.output(27, True)
+    gpio.output(22, False)
     gpio.output(23, False)
     gpio.output(24, True)
     time.sleep(tf)
     
-    gpio.output(27, True)
-    gpio.output(22, False)
+    gpio.output(27, Flase)
+    gpio.output(22, True)
     gpio.output(23, True)
-    gpio.output(24, False)
+    gpio.output(24, Flase)
     time.sleep(0.025)
     gpio.cleanup()
