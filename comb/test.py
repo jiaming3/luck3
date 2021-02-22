@@ -170,15 +170,17 @@ if __name__ == "__main__":
                 right(rotate_time)
                 current_rotate_position = current_rotate_position + 1
                 manual_message = None
+                
                 # set back to zero when 360 degree
                 if current_rotate_position == 4:
                     current_rotate_position = 0
+                stop(1)
 
             if manual_message=="manual_backward":
-                stabilizer, counter = func_sensor(40, 0, 0, counter, max_num, move_time, stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
+                stabilizer, counter = func_sensor(100, 0, 0, counter, max_num, move_time, stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
 
             if manual_message=="manual_return":
-                counter = func_return(counter, move_time)
+                counter = func_return(counter, move_time,current_rotate_position,rotate_time)
                 reset_time = time.localtime()
                 last_hour = reset_time.tm_hour
 
