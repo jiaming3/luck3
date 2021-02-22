@@ -236,86 +236,86 @@ if __name__ == "__main__":
         except:
             pass
 
-        try:
-          #code for auto motor motion
-          #muliti copy of time to avoid intercetion time error after changing parameter by phone
-          stabilizer, counter,current_rotate_position = func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
+#         try:
+#           #code for auto motor motion
+#           #muliti copy of time to avoid intercetion time error after changing parameter by phone
+#           stabilizer, counter,current_rotate_position = func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
 
-          current_time =time.localtime()
-          current_min = current_time.tm_min
-          current_hour2 = current_time.tm_hour #use for humidity delay
-          current_hour = current_time.tm_hour # use for rotation
-          current_day = current_time.tm_mday
-          current_day2 = current_time.tm_mday #for water
-          current_hour3 = current_time.tm_hour # use for rotate
-          current_hour4 = current_time.tm_hour # use for water
+#           current_time =time.localtime()
+#           current_min = current_time.tm_min
+#           current_hour2 = current_time.tm_hour #use for humidity delay
+#           current_hour = current_time.tm_hour # use for rotation
+#           current_day = current_time.tm_mday
+#           current_day2 = current_time.tm_mday #for water
+#           current_hour3 = current_time.tm_hour # use for rotate
+#           current_hour4 = current_time.tm_hour # use for water
 
-          # if  time_delay reach threshold, then unlock the humidity sensor
-          if current_hour2 == last_hour2:
-              if current_min - last_min >= time_delay_humidity:
-                  stabilizer = True
-                  last_min = current_min
-              else:
-                  pass
-
-
-          else:
-              hour_difference =current_hour2 - last_hour2
-              min_difference = current_min+hour_difference*60-last_min
-              if min_difference >= time_delay_humidity:
-
-                  last_hour2 =current_hour2
-                  last_min = current_min
-                  stabilizer = True
+#           # if  time_delay reach threshold, then unlock the humidity sensor
+#           if current_hour2 == last_hour2:
+#               if current_min - last_min >= time_delay_humidity:
+#                   stabilizer = True
+#                   last_min = current_min
+#               else:
+#                   pass
 
 
+#           else:
+#               hour_difference =current_hour2 - last_hour2
+#               min_difference = current_min+hour_difference*60-last_min
+#               if min_difference >= time_delay_humidity:
 
-
-          # rotate every few hours
-          if current_hour3 - last_hour3 >= each_hr_for_rotation:
-              right(rotate_time)
-              current_rotate_position = current_rotate_position +1
-              last_hour3 = current_hour3
-              # set back to zero when 360 degree
-              if current_rotate_position == 4:
-                  current_rotate_position = 0
+#                   last_hour2 =current_hour2
+#                   last_min = current_min
+#                   stabilizer = True
 
 
 
-          # every few hours after move backward, it return back to inital position
 
-          if current_day ==last_day:
-            if current_hour - last_hour >= time_for_return:
-                 counter = func_return(counter,move_time)
-                 last_hour =current_hour
-          else:
-              # across day
-              hour_difference2 = current_hour+ 24 - last_hour
-              if hour_difference2 >= time_for_return:
-                counter = func_return(counter, move_time,current_rotate_position,rotate_time)
-                last_day =current_day
-                last_hour = current_hour
+#           # rotate every few hours
+#           if current_hour3 - last_hour3 >= each_hr_for_rotation:
+#               right(rotate_time)
+#               current_rotate_position = current_rotate_position +1
+#               last_hour3 = current_hour3
+#               # set back to zero when 360 degree
+#               if current_rotate_position == 4:
+#                   current_rotate_position = 0
 
 
 
-        #code for water
-          if current_day2 == last_day2:
-              if current_hour4 - last_hour4 >= each_hr_for_water:
-                  addwater(water_time)
-                  last_hour4 = current_hour4
+#           # every few hours after move backward, it return back to inital position
 
-          else:
-              # across day
-              hour_difference3 = current_hour4 + 24 - last_hour4
-              if hour_difference3 >= each_hr_for_water:
-                  addwater(water_time)
-                  last_day2 = current_day2
-                  last_hour4 = current_hour4
+#           if current_day ==last_day:
+#             if current_hour - last_hour >= time_for_return:
+#                  counter = func_return(counter,move_time)
+#                  last_hour =current_hour
+#           else:
+#               # across day
+#               hour_difference2 = current_hour+ 24 - last_hour
+#               if hour_difference2 >= time_for_return:
+#                 counter = func_return(counter, move_time,current_rotate_position,rotate_time)
+#                 last_day =current_day
+#                 last_hour = current_hour
 
 
 
-        except:
-            pass
+#         #code for water
+#           if current_day2 == last_day2:
+#               if current_hour4 - last_hour4 >= each_hr_for_water:
+#                   addwater(water_time)
+#                   last_hour4 = current_hour4
+
+#           else:
+#               # across day
+#               hour_difference3 = current_hour4 + 24 - last_hour4
+#               if hour_difference3 >= each_hr_for_water:
+#                   addwater(water_time)
+#                   last_day2 = current_day2
+#                   last_hour4 = current_hour4
+
+
+
+#         except:
+#             pass
 
         last_water_hr = last_hour4
         last_rotate_hr = last_hour3
