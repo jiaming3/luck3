@@ -42,7 +42,7 @@ def func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_posit
         unmove = False
     else:
         pass
-    return stabilizer, counter
+    return stabilizer, counter,current_rotate_position
 
 
 def func_return(counter,move_time,current_rotate_position,rotate_time):
@@ -60,7 +60,7 @@ def func_return(counter,move_time,current_rotate_position,rotate_time):
         counter = counter -1
     else:
         pass
-    return counter
+    return counter,current_rotate_position
 
 
 def addwater(water_time):
