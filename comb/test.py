@@ -149,7 +149,7 @@ if __name__ == "__main__":
     time_delay_humidity = 2 # 2 minutes wait for humidity
 
     current_rotate_position =0
-
+    aa = 0
 
     try:
      while True:
@@ -186,11 +186,11 @@ if __name__ == "__main__":
                 gpio.cleanup()
                 ########
                 #current_rotate_position = current_rotate_position + 1
-                #manual_message = None
+                aa = aa + 1
                 
                 # set back to zero when 360 degree
-                #if current_rotate_position == 4:
-                #    current_rotate_position = 0
+                if current_rotate_position == 4:
+                    current_rotate_position = 0
                 
 
             if manual_message=="manual_backward":
