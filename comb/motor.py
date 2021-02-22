@@ -17,6 +17,13 @@ def reverse(tf):
     gpio.output(23, True)
     gpio.output(24, False)
     time.sleep(tf)
+    
+    gpio.output(27, False)
+    gpio.output(22, True)
+    gpio.output(23, False)
+    gpio.output(24, True)
+    time.sleep(0.025)
+    
     gpio.cleanup()
 
 
@@ -27,6 +34,13 @@ def forward(tf):
     gpio.output(23, False)
     gpio.output(24, True)
     time.sleep(tf)
+    
+    gpio.output(27, True)
+    gpio.output(22, False)
+    gpio.output(23, True)
+    gpio.output(24, False)
+    time.sleep(tf)
+    
     gpio.cleanup()
 
 
@@ -60,10 +74,3 @@ def motor_right(tf):
     gpio.output(24, False)
     time.sleep(0.025)
     gpio.cleanup()
-#while True:
-#    forward(1.5)
-#    reverse(0.025)
-#    stop(2)
-#    reverse(1.5)
-#    forward(0.025)
-#    stop(2)
