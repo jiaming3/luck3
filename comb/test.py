@@ -316,8 +316,7 @@ if __name__ == "__main__":
 
         except:
             pass
-            
-            """
+ """
         last_water_hr = last_hour4
         last_rotate_hr = last_hour3
         publish_data(te, hu, p, flower,last_water_hr,last_rotate_hr)
