@@ -169,17 +169,17 @@ if __name__ == "__main__":
             
             print("manual message",manual_message)
             
-            if manual_message == "manual_backward":
+            if manual_message == "manual_turn":
                 #######
                 init()
-                gpio.output(27, False)
-                gpio.output(22, True)
+                gpio.output(27, True)
+                gpio.output(22, False)
                 gpio.output(23, False)
                 gpio.output(24, True)
                 time.sleep(rotate_time)
 
-                gpio.output(27, True)
-                gpio.output(22, False)
+                gpio.output(27, False)
+                gpio.output(22, True)
                 gpio.output(23, True)
                 gpio.output(24, False)
                 time.sleep(0.025)
@@ -193,7 +193,7 @@ if __name__ == "__main__":
                 #    current_rotate_position = 0
                 
 
-            if manual_message=="manual_rotate":
+            if manual_message=="manual_backward":
                 stabilizer, counter = func_sensor(100, 0, 0, counter, max_num, move_time, stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
 
             if manual_message=="manual_return":
