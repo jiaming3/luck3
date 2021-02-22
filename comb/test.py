@@ -7,6 +7,7 @@ from bmp280 import bmp280_readdata,bmp280_convert,bmp280_checktemp
 from si import hum,temp
 from control import func_sensor,func_return,right,addwater
 from motor import init
+import RPi.GPIO as gpio
  
 """
 accel/mag - 0x1f
