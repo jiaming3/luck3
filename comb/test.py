@@ -168,6 +168,7 @@ if __name__ == "__main__":
             manual_message = received["Action"]
             
             print("manual message",manual_message)
+            
             if manual_message == "manual_backward":
                 #######
                 init()
@@ -175,7 +176,7 @@ if __name__ == "__main__":
                 gpio.output(22, True)
                 gpio.output(23, False)
                 gpio.output(24, True)
-                time.sleep(tf)
+                time.sleep(rotate_time)
 
                 gpio.output(27, True)
                 gpio.output(22, False)
@@ -184,12 +185,12 @@ if __name__ == "__main__":
                 time.sleep(0.025)
                 gpio.cleanup()
                 ########
-                current_rotate_position = current_rotate_position + 1
-                manual_message = None
+                #current_rotate_position = current_rotate_position + 1
+                #manual_message = None
                 
                 # set back to zero when 360 degree
-                if current_rotate_position == 4:
-                    current_rotate_position = 0
+                #if current_rotate_position == 4:
+                #    current_rotate_position = 0
                 
 
             if manual_message=="manual_rotate":
