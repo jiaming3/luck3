@@ -68,9 +68,9 @@ def motor_right(tf):
     gpio.output(24, True)
     time.sleep(tf)
     
-    gpio.output(27, Flase)
+    gpio.output(27, False)
     gpio.output(22, True)
     gpio.output(23, True)
-    gpio.output(24, Flase)
+    gpio.output(24, False)
     time.sleep(0.025)
     gpio.cleanup()
