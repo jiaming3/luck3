@@ -184,7 +184,8 @@ if __name__ == "__main__":
                 time.sleep(0.025)
                 gpio.cleanup()
                 ########
-                #current_rotate_position = current_rotate_position + 1
+                current_rotate_position = current_rotate_position + 1
+                print("current_rotate_position33",current_rotate_position)
                 
                 # set back to zero when 360 degree
                 if current_rotate_position == 4:
@@ -192,12 +193,14 @@ if __name__ == "__main__":
                 
 
             if manual_message=="manual_backward":
-                
+                print("current_rotate_position11",current_rotate_position)
                 stabilizer, counter,current_rotate_position = func_sensor(100, 0, 0, counter, max_num, move_time, stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
-                
+                print("current_rotate_position22",current_rotate_position)
                 
             if manual_message=="manual_return":
+                print("current_rotate_position1",current_rotate_position)
                 counter, current_rotate_position= func_return(counter, move_time,current_rotate_position,rotate_time)
+                print("current_rotate_position2",current_rotate_position)
                 reset_time = time.localtime()
                 last_hour = reset_time.tm_hour
 
