@@ -168,7 +168,7 @@ if __name__ == "__main__":
             manual_message = received["Action"]
             
             print("manual message",manual_message)
-            if manual_message == "manual_rotate":
+            if manual_message == "manual_backward":
                 #######
                 init()
                 gpio.output(27, False)
@@ -192,7 +192,7 @@ if __name__ == "__main__":
                     current_rotate_position = 0
                 
 
-            if manual_message=="manual_backward":
+            if manual_message=="manual_rotate":
                 stabilizer, counter = func_sensor(100, 0, 0, counter, max_num, move_time, stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
 
             if manual_message=="manual_return":
