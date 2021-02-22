@@ -239,10 +239,10 @@ if __name__ == "__main__":
         except:
             pass
 
-#         try:
+         try:
 #           #code for auto motor motion
 #           #muliti copy of time to avoid intercetion time error after changing parameter by phone
-#           stabilizer, counter,current_rotate_position = func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
+            stabilizer, counter,current_rotate_position = func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
 
 #           current_time =time.localtime()
 #           current_min = current_time.tm_min
@@ -316,9 +316,9 @@ if __name__ == "__main__":
 #                   last_hour4 = current_hour4
 
 
-
-#         except:
-#             pass
+            time.sleep(3)
+         except:
+             pass
 
         last_water_hr = last_hour4
         last_rotate_hr = last_hour3
