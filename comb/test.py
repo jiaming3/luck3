@@ -194,10 +194,10 @@ if __name__ == "__main__":
             if manual_message=="manual_backward":
                 
                 stabilizer, counter,current_rotate_position = func_sensor(100, 0, 0, counter, max_num, move_time, stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
-                current_rotate_position = current_rotate_position + 1
+                
                 
             if manual_message=="manual_return":
-                counter = func_return(counter, move_time,current_rotate_position,rotate_time)
+                counter, current_rotate_position= func_return(counter, move_time,current_rotate_position,rotate_time)
                 reset_time = time.localtime()
                 last_hour = reset_time.tm_hour
 
@@ -286,13 +286,13 @@ if __name__ == "__main__":
 
 #           if current_day ==last_day:
 #             if current_hour - last_hour >= time_for_return:
-#                  counter = func_return(counter,move_time)
+#                  counter,current_rotate_position = func_return(counter,move_time)
 #                  last_hour =current_hour
 #           else:
 #               # across day
 #               hour_difference2 = current_hour+ 24 - last_hour
 #               if hour_difference2 >= time_for_return:
-#                 counter = func_return(counter, move_time,current_rotate_position,rotate_time)
+#                 counter,current_rotate_position = func_return(counter, move_time,current_rotate_position,rotate_time)
 #                 last_day =current_day
 #                 last_hour = current_hour
 
