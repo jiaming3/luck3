@@ -123,9 +123,9 @@ if __name__ == "__main__":
     move_time =1 #setting time sleep for the motor
     max_num = 2  # record maximum number of backward
 
-    temp_threshold = 35
+    temp_threshold = 50
     humid_threshold = 80
-    pressure_threshold = 1005.7
+    pressure_threshold = 1007
 
     water_time = 2
     each_hr_for_water = 8
