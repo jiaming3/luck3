@@ -5,7 +5,7 @@ from nxp_imu import IMU
 import time
 from bmp280 import bmp280_readdata,bmp280_convert,bmp280_checktemp
 from si import hum,temp
-from control import func_sensor,func_return,right,addwater,stop
+from control import func_sensor,func_return,right,addwater
  
 """
 accel/mag - 0x1f
@@ -174,7 +174,7 @@ if __name__ == "__main__":
                 # set back to zero when 360 degree
                 if current_rotate_position == 4:
                     current_rotate_position = 0
-                stop(1)
+                
 
             if manual_message=="manual_backward":
                 stabilizer, counter = func_sensor(100, 0, 0, counter, max_num, move_time, stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold)
