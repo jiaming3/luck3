@@ -39,7 +39,7 @@ def forward(tf):
     gpio.output(22, False)
     gpio.output(23, True)
     gpio.output(24, False)
-    time.sleep(tf)
+    time.sleep(0.025)
     
     gpio.cleanup()
 
