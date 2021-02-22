@@ -5,7 +5,7 @@ import RPi.GPIO as gpio
 
 def right(tf):
     motor_right(tf)
-
+    pass
 
 
 
