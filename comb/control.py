@@ -5,13 +5,13 @@ import RPi.GPIO as gpio
 
 def right(tf):
     init()
-    gpio.output(17, False)
+    gpio.output(27, False)
     gpio.output(22, True)
     gpio.output(23, False)
     gpio.output(24, True)
     time.sleep(tf)
     
-    gpio.output(17, True)
+    gpio.output(27, True)
     gpio.output(22, False)
     gpio.output(23, True)
     gpio.output(24, False)
@@ -23,7 +23,7 @@ def right(tf):
 
 
 
-def func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_position,rotate_time,Temp_threshold,Pressure_threshold,Humid_threshold):
+def func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_position,rotate_time,temp_threshold,pressure_threshold,humid_threshold):
     while current_rotate_position !=0:
         right(rotate_time)
         current_rotate_position = current_rotate_position+1
@@ -33,11 +33,11 @@ def func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_posit
 
     # bool to ensure only one time mvement each time we run this function
     unmove = True
-    if t > Temp_threshold and counter <max_num and unmove:
+    if t > temp_threshold and counter <max_num and unmove:
         reverse(move_time)  # set move_time manually here to control the time of operation
         counter=counter+1
         unmove =False
-    elif hu > Humid_threshold and counter <max_num and stabilizer and unmove:
+    elif hu > humid_threshold and counter <max_num and stabilizer and unmove:
         reverse(move_time) # set x move_time manually here to control the time of operation
         counter = counter + 1
         stabilizer = False
@@ -48,7 +48,7 @@ def func_sensor(t,hu,p,counter,max_num,move_time,stabilizer,current_rotate_posit
         counter = counter + 1
         stabilizer = False
         unmove = False
-    elif p > Pressure_threshold and counter <max_num and unmove:
+    elif p > pressure_threshold and counter <max_num and unmove:
         reverse(move_time) # set move_time manually here to control the time of operation
         counter = counter + 1
         unmove = False
