@@ -169,6 +169,7 @@ if __name__ == "__main__":
             if manual_message == "manual_rotate":
                 right(rotate_time)
                 current_rotate_position = current_rotate_position + 1
+                manual_message = None
                 # set back to zero when 360 degree
                 if current_rotate_position == 4:
                     current_rotate_position = 0
