@@ -1,22 +1,10 @@
 import time
-from motor import init,forward,reverse,stop,water
+from motor import init,forward,reverse,stop,water,motor_right
 import RPi.GPIO as gpio
 
 
 def right(tf):
-    init()
-    gpio.output(27, False)
-    gpio.output(22, True)
-    gpio.output(23, False)
-    gpio.output(24, True)
-    time.sleep(tf)
-    
-    gpio.output(27, True)
-    gpio.output(22, False)
-    gpio.output(23, True)
-    gpio.output(24, False)
-    time.sleep(0.025)
-    gpio.cleanup()
+    motor_right(tf)
 
 
 
