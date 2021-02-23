@@ -6,7 +6,7 @@ bus = smbus2.SMBus(1)
 #bmp_280 address
 bmp_addr=0x77
 
-#dig_t1-9 and P1-9 coeffcient for calculation
+#dig_t1-3 and P1-9 coeffcient for calculation. initialization
 dig_T1 = 0
 dig_T2 = 0
 dig_T3 = 0
@@ -21,9 +21,8 @@ dig_P7=0
 dig_P8=0
 dig_P9 =0
 b1 = bus.read_i2c_block_data(bmp_addr, 0x88, 24)
-    # Convert the data
-    # Temp coefficents
-
+   
+    # Convert the temp coefficents
 dig_T1 = b1[1] * 256 + b1[0]
 dig_T2 = b1[3] * 256 + b1[2]
 if dig_T2 > 32767:
@@ -58,30 +57,27 @@ dig_P9 = b1[23] * 256 + b1[22]
 if dig_P9 > 32767:
     dig_P9 -= 65536
 
-# BMP280 address, 0x77(118)
-# Select Control measurement register, 0xF4(244)
-# 0x27(39) Pressure and Temperature Oversampling rate = 1
-# Normal mode
+
+# Select Control measurement register, 0xF4
+# 0x57 (01010111) Pressure  Oversampling rate = 16 and Temperature Oversampling rate = 2
+# Normal mode 
 bus.write_byte_data(bmp_addr, 0xF4, 0x57)
 
-# data: read from sensor
+
 
 
 def bmp280_readdata():#read once per call
-    # BMP280 address, 0x77(118)
     # Select Configuration register, 0xF5(245)
-    # 0xA0(00) Stand_by time = 62.5 ms
+    # 0x34  Stand_by time = 62.5 ms
     bus.write_byte_data(bmp_addr, 0xF5, 0x34)
     time.sleep(0.5)
-    # BMP280 address, 0x77(118)
     # Read data back from 0xF7(247), 8 bytes
     # Pressure MSB, Pressure LSB, Pressure xLSB, Temperature MSB, Temperature LSB
     # Temperature xLSB, Humidity MSB, Humidity LSB
     data = bus.read_i2c_block_data(bmp_addr, 0xF7, 8)
     return data
-#pressure
 
-def bmp280_convert(data):
+def bmp280_convert(data):#calculate pressure
     # Convert pressure and temperature data to 19-bits
     adc_p = ((data[0] * 65536) + (data[1] * 256) + (data[2] & 0xF0)) / 16
     adc_t = ((data[3] * 65536) + (data[4] * 256) + (data[5] & 0xF0)) / 16
@@ -89,8 +85,7 @@ def bmp280_convert(data):
     var1 = ((adc_t) / 16384.0 - (dig_T1) / 1024.0) * (dig_T2)
     var2 = (((adc_t) / 131072.0 - (dig_T1) / 8192.0) * ((adc_t) / 131072.0 - (dig_T1) / 8192.0)) * (dig_T3)
     t_fine = var1+var2 
-    cTemp = (var1 + var2) / 5120.0
-    fTemp = cTemp * 1.8 + 32
+    
     # Pressure offset calculations
     var1 = (t_fine / 2.0) - 64000.0
     var2 = var1 * var1 * (dig_P6) / 32768.0
@@ -106,15 +101,15 @@ def bmp280_convert(data):
     return pressure
 
 def bmp280_checktemp(data):
-    # Convert pressure and temperature data to 19-bits
+    #this function is used just for check.
     adc_p = ((data[0] * 65536) + (data[1] * 256) + (data[2] & 0xF0)) / 16
     adc_t = ((data[3] * 65536) + (data[4] * 256) + (data[5] & 0xF0)) / 16
     # Temperature offset calculations
     var1 = ((adc_t) / 16384.0 - (dig_T1) / 1024.0) * (dig_T2)
     var2 = (((adc_t) / 131072.0 - (dig_T1) / 8192.0) * ((adc_t) / 131072.0 - (dig_T1) / 8192.0)) * (dig_T3)
     t_fine = var1+var2 
-    cTemp = (var1 + var2) / 5120.0
-    fTemp = cTemp * 1.8 + 32
-    # Pressure offset calculations
+    Temp = (var1 + var2) / 5120.0
     
-    return cTemp
+    
+    
+    return Temp
